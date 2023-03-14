@@ -1,0 +1,52 @@
+$BackgroundColor: rgba(222, 33, 33, 0.6);
+$HeadingColor: rgb(0, 255, 30);
+$PrimaryColor: black;
+
+@mixin border() {
+    border-radius: 5px;
+}
+
+@mixin SetColorHeader() {
+    color: $HeadingColor;
+}
+
+@function Multiply($value, $multiplier: 2) {
+    @return $value * $multiplier;
+}
+
+@function ComplementColor($Color) {
+    @return Complement($Color);
+}
+
+@function SetTextColor() {
+    @if (lightness($BackgroundColor) > 50) {
+        @return rgb(255, 0, 0);
+    } @else {
+        @return rgb(0, 21, 255);
+    }
+}
+
+p {
+    color: $PrimaryColor;
+}
+
+h3, h4, h5 {
+    @include SetColorHeader()
+}
+
+h1 {
+    font-size: Multiply(24px);
+    color: ComplementColor($BackgroundColor)
+}
+
+h2 {
+    color: SetTextColor();
+}
+
+body {
+    background-color: $BackgroundColor;
+}
+
+button {
+    @include border()
+}
